@@ -12,6 +12,7 @@
 
 // GEAR
 #include <gear/BField.h>
+#include <GeometryUtil.h>
 
 #include "TROOT.h"
 #include "TApplication.h"
@@ -114,7 +115,8 @@ void LcfiplusProcessor::init() {
     if (_magneticField != 0)
       Globals::Instance()->setBField(_magneticField);
     else
-      Globals::Instance()->setBField( marlin::Global::GEAR->getBField().at(gear::Vector3D(0.,0.,0.)).z() );
+      Globals::Instance()->setBField( MarlinUtil::getBzAtOrigin() );
+    //Globals::Instance()->setBField( marlin::Global::GEAR->getBField().at(gear::Vector3D(0.,0.,0.)).z() );
 
     Globals::Instance()->setBeamSizeX(_beamSizeX);
     Globals::Instance()->setBeamSizeY(_beamSizeY);
